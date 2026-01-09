@@ -1,55 +1,95 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report:
+- Version change: N/A → 1.0.0 (initial version)
+- Added sections: All principles and sections for AI-Native Todo Application
+- Templates requiring updates: N/A (this is the initial version)
+- Follow-up TODOs: None
+-->
+# AI-Native Todo Application (Phased Evolution) Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Spec-first Development
+All specifications must be completed and approved before any implementation begins. This ensures clear requirements and reduces rework during development.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Incremental Complexity with Zero Regression
+Each phase must build upon the previous one without breaking existing functionality. All features from previous phases must continue to work as expected.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Deterministic Behavior in Early Phases
+Early phases (I-III) must maintain deterministic behavior with full testability. Probabilistic elements (AI) are only introduced where explicitly required in later phases.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Clean Separation of Concerns
+Clear boundaries between UI, logic, storage, AI, and infrastructure components. Each component must have well-defined interfaces and responsibilities.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### Developer Ergonomics and Maintainability
+Code clarity is prioritized over premature optimization. All code must be understandable by a new developer reading specs first, with explicit assumptions documented in specifications.
 
-### [PRINCIPLE_6_NAME]
+### Phase Independence
+Each phase must be independently runnable and testable, with backward-compatible domain models maintained between phases.
 
+## Phase-wise Standards
+Standards governing the five-phase evolution of the application:
 
-[PRINCIPLE__DESCRIPTION]
+Phase I – In-Memory Python Console App
+- Single-process, in-memory state (no file or DB persistence)
+- Pure Python standard library only
+- Console-based UX (clear prompts, predictable outputs)
+- Deterministic logic with full testability
+- No hidden state or side effects
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+Phase II – Full-Stack Web Application
+- Frontend: Next.js with clear component boundaries
+- Backend: FastAPI with SQLModel
+- Database: Neon (PostgreSQL)
+- API-first design with OpenAPI compliance
+- Stateless backend with persistent storage
+- Backward-compatible domain model from Phase I
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+Phase III – AI-Powered Todo Chatbot
+- AI features are additive, not core-breaking
+- Use OpenAI ChatKit and Agents SDK responsibly
+- Explicit agent roles and tool boundaries
+- Deterministic fallbacks for AI failures
+- Clear separation between business logic and AI orchestration
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+Phase IV – Local Kubernetes Deployment
+- All services containerized with Docker
+- Local orchestration via Minikube
+- Helm charts must be reproducible and documented
+- kubectl-ai and kagent used only for operational assistance
+- No cloud-only dependencies
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+Phase V – Advanced Cloud Deployment
+- Event-driven architecture using Kafka
+- Service invocation via Dapr
+- Deployment on DigitalOcean DOKS
+- Observability, scalability, and fault tolerance required
+- Zero-downtime deployment strategy
+
+## Key Standards and Constraints
+Standards and constraints that govern development:
+
+Key Standards:
+- Each phase must be independently runnable
+- Specs must be updated before code changes
+- No phase may introduce breaking changes without migration specs
+- Code clarity prioritized over premature optimization
+- Explicit assumptions documented in specs
+
+Constraints:
+- Phase I must remain fully functional without internet access
+- No vendor lock-in before Phase V
+- Security best practices applied progressively
+- Infrastructure as Code required from Phase IV onward
+
+Success Criteria:
+- Each phase passes its own acceptance checklist
+- Smooth upgrade path between phases
+- AI components enhance UX without reducing reliability
+- System is understandable by a new developer reading specs first
+- Production readiness achieved by Phase V
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+This constitution governs all aspects of the AI-Native Todo Application development. All development activities must comply with the principles and standards outlined herein. Changes to this constitution require formal approval and documentation of the rationale and impact.
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
-
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-01-09 | **Last Amended**: 2026-01-09

@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git rev-parse --abbrev-ref HEAD)",
+      "Bash(git config user.name)",
+      "Bash(git fetch --all --prune)",
+      "Bash(ls -d specs/*-console-todo-app)",
+      "Bash(pwsh -Command \".specify/scripts/powershell/create-new-feature.ps1\" -Json \"/sp.specify In-Memory Python Console Todo Application \\(Phase I\\)\n\nTarget audience:\n- Evaluators reviewing agentic, spec-driven development workflows\n- Developers learning disciplined CLI application design\n\nObjective:\nDefine a clear, testable specification for a Python console-based Todo application that operates entirely in memory and demonstrates clean architecture, predictable behavior, and full coverage of basic CRUD-style task management.\n\nScope & focus:\n- Command-line interface \\(CLI\\) based interaction\n- In-memory task storage \\(no files, no databases\\)\n- Deterministic behavior suitable for automated testing\n- Foundation spec that can evolve into later phases\n\nCore functionality \\(must-have\\):\n1. Add a todo item\n2. View all todo items\n3. Update an existing todo item\n4. Delete a todo item\n5. Mark a todo item as completed\n\nEach feature must clearly define:\n- User input format\n- System behavior\n- Expected output\n- Error handling and edge cases\n\nSuccess criteria:\n- All 5 basic features are fully specified and unambiguous\n- A developer or AI agent can implement the app using the spec alone\n- CLI flow is intuitive and consistent\n- State management is predictable and transparent\n- Spec supports clean separation of concerns \\(UI vs logic\\)\n\nTechnical constraints:\n- Language: Python 3.13+\n- Environment: UV-managed Python project\n- Standard library only \\(no third-party packages\\)\n- Runs entirely offline\n- No persistence beyond runtime memory\n\nQuality standards:\n- Clean code principles enforced at the spec level\n- Clear naming conventions for commands and data structures\n- Explicit assumptions documented\n- No hidden behavior or implicit state changes\n\nWorkflow constraints:\n- Spec must be written before planning or implementation\n- No manual coding; implementation will be generated via Claude Code\n- Spec clarity and completeness are part of evaluation\n\nOut of scope / Not building:\n- File-based or database persistence\n- GUI or web interface\n- Authentication or user accounts\n- AI features or natural language input\n- Concurrency or multi-user support\n- Logging, metrics, or analytics\n\nDeliverable format:\n- Markdown specification\n- Structured sections \\(Overview, Features, CLI Flow, Data Model, Error Cases, Acceptance Criteria\\)\n- Ready for downstream steps: plan generation → task breakdown → implementation\" -Number 1 -ShortName \"console-todo-app\")",
+      "Bash(echo $SPECIFY_FEATURE)",
+      "Bash(pwsh -Command \".specify/scripts/powershell/update-agent-context.ps1\" -AgentType claude)",
+      "Bash(python src/main.py --help)",
+      "Bash(python src/main.py add \"Buy groceries\")",
+      "Bash(python src/main.py view)"
+    ]
+  }
+}
